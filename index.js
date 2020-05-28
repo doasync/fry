@@ -10,7 +10,7 @@ const joinBase = (url, baseUrl) =>
 
 const contentTypeJson = { "Content-Type": "application/json" };
 
-export const createRequest = (baseConfig) => (customConfig) => {
+const createRequest = (baseConfig) => (customConfig) => {
   const config = { ...baseConfig, ...customConfig };
   const { baseUrl, url, data, params, fn, silent, ...init } = config;
   const resource = `${joinBase(url, baseUrl)}${queryString(params)}`;
