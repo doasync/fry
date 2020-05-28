@@ -12,11 +12,11 @@
 Benefits over plain `fetch`
 ===================
 
-Extended API
-Treats non-2xx status codes as errors
-Handles JSON
-Custom defaults
-And more...
+- Extended API
+- Treats non-2xx status codes as errors
+- Handles JSON
+- Custom defaults
+- And more...
 
 ----------
 
@@ -31,6 +31,19 @@ Usage
 -------------------
 
 ```javascript
+import { createRequest } from "fry"; // import { request } from "fry";
+
+const request = createRequest({
+  baseUrl: "https://app.io/api",
+  redirect: "error",
+});
+
+const ENDPOINT = {
+  user: () => "user",
+  transactions: () => "transactions",
+  activate: (accountId) => `accounts/${accountId}`,
+};
+
 export const checkUser = (id) =>
   request({
     url: ENDPOINT.user(),
