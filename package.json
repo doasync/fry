@@ -1,0 +1,34 @@
+{
+  "name": "fry",
+  "version": "0.0.1",
+  "author": "doasync <doasync@gmail.com>",
+  "license": "MIT",
+  "description": "Tiny declarative HTTP client based on the browser Fetch API",
+  "deprecated": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doasync/fry.git"
+  },
+  "keywords": [
+    "fetch",
+    "request",
+    "requests",
+    "http",
+    "https",
+    "fetching",
+    "get",
+    "url",
+    "curl",
+    "wget",
+    "net",
+    "network",
+    "ajax",
+    "api",
+    "rest",
+    "xhr",
+    "browser",
+    "got",
+    "axios",
+    "node-fetch"
+  ]
+}
