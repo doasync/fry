@@ -1,6 +1,6 @@
 {
   "name": "fry",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "author": "doasync <doasync@gmail.com>",
   "license": "MIT",
   "description": "Tiny declarative HTTP client based on the browser Fetch API",
