@@ -27,7 +27,7 @@ const createRequest = (baseConfig) => (customConfig) => {
   const handleRequestErrors = (response) => {
     if (!response.ok) {
       const error = Error(response.statusText);
-      Object.assign(error, { response, config, request });
+      Object.assign(error, { config, request, response, resource, baseConfig });
       throw error;
     }
     return response;
@@ -43,7 +43,7 @@ const createRequest = (baseConfig) => (customConfig) => {
         /* skip */
       }
       return fn
-        ? fn({ config, request, response, jsonData, resource, init, baseConfig })
+        ? fn({ config, request, response, resource, baseConfig, jsonData })
         : jsonData;
     });
 };
