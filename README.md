@@ -27,6 +27,37 @@ Installation
 npm install fry
 ```
 
+Description
+-------------
+
+fry is `fetch` on steroids :)
+
+There are two exports in the package: `request` and `createRequest`
+
+`createRequest` is used to set a base config for all requests
+
+The `request` accepts the same params/options as `fetch` as well as additional ones: baseUrl, url, data, params, fn, silent
+
+```md
+url - the only required param,
+baseUrl - will be prepended to url,
+data - object for json body,
+params - query as an object,
+silent - do not fall on http errors,
+fn - preparation of the result (if necessary)
+```
+
+`fn` parameters:
+
+```md
+request - object of the request,
+response - object of the response,
+jsonData - parsed json,
+resource - full request url,
+config - what was passed to the request,
+baseConfig - what was passed to createRequest
+```
+
 Usage
 -------------------
 
