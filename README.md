@@ -27,8 +27,8 @@
 ```bash
 npm install fry
 ```
-Description
--------------
+
+## Description
 
 fry is `fetch` on steroids :)
 
@@ -65,8 +65,7 @@ onBeforeResponse - do something before response is handled,
 onResponseError - return a new response or handle errors,
 ```
 
-Usage
--------------------
+## Usage
 
 ```typescript
 import { createRequest } from 'fry'; // import { request } from "fry";
@@ -149,6 +148,7 @@ export type Config<R = unknown> = {
   }) => Response | Promise<Response>;
 } & RequestInit;
 ```
+
 </details>
 
 <details>
@@ -175,10 +175,11 @@ export type Fn<R = unknown> = (meta: {
   jsonData?: unknown;
 }) => R;
 ```
+
 </details>
 
 ### Repository
 
 ---
 
-GitHub ★: https://github.com/doasyc/fry
+GitHub ★: https://github.com/doasync/fry
