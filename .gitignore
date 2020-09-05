@@ -1,5 +1,5 @@
-# Dependency directory
-node_modules/
-
-# JetBrains IntelliJ IDEA IDE (WebStorm)
-\.idea/
+*.log
+.DS_Store
+node_modules
+dist
+.idea

@@ -9,68 +9,76 @@
 [issues-image]: https://img.shields.io/github/issues/doasync/fry.svg
 [issues-url]: https://github.com/doasync/fry/issues
 
-Benefits over plain `fetch`
-===================
+# Benefits over plain `fetch`
 
 - Extended API
 - Treats non-2xx status codes as errors
 - Handles JSON
 - Custom defaults
+- Easy interceptors
+- Transform function
+- TypeScrypt support
 - And more...
 
-----------
+---
 
-Installation
--------------
+## Installation
 
 ```bash
 npm install fry
 ```
 
-Usage
--------------------
+## Usage
 
-```javascript
-import { createRequest } from "fry"; // import { request } from "fry";
+```typescript
+import { createRequest } from 'fry'; // import { request } from "fry";
 
 const request = createRequest({
-  baseUrl: "https://app.io/api",
-  redirect: "error",
+  baseUrl: 'https://app.io/api',
+  redirect: 'error',
 });
 
-const ENDPOINT = {
-  user: () => "user",
-  transactions: () => "transactions",
-  activate: (accountId) => `accounts/${accountId}`,
-};
-
-export const checkUser = (id) =>
+export const checkUser = id =>
   request({
-    url: ENDPOINT.user(),
-    method: "post",
+    url: 'user',
+    method: 'post',
     data: { userId: id }, // json
     fn: ({ jsonData: [user], config }) =>
       Boolean(config.data.userId === user.id && user.exists === true), // return boolean
   });
 
 // No need for async / await
-export const submitTransaction = (tx) =>
+export const submitTransaction = tx =>
   request({
-    url: ENDPOINT.transactions(),
-    method: "post",
+    url: 'transactions',
+    method: 'post',
     data: { base64 },
-    fn: ({ config, request, response, jsonData, resource, init, baseConfig }) => tx, // returns tx
+    fn: ({ config, request, response, jsonData, resource, init, baseConfig }) =>
+      tx, // returns tx
   });
 
-export const activate = (accountId) =>
+export const activate = accountId =>
   request({
-    url: ENDPOINT.activate(accountId),
-    method: "post",
+    url: `accounts/${accountId}`,
+    method: 'post',
   }); // returns jsonData if no `fn`
 
+const getAccount = accountId => request(`accounts/${accountId}`); // 'get' method is default
+
+// Using TypeScript
+
+const fetchCountry = async countryId =>
+  request(`api/countries/${countryId}`) as Promise<Country>;
+
+const fetchLocations = async () =>
+  request<Locations>({
+    url: 'api/locations/countries/',
+    fn: ({ jsonData }) => convertCountriesToLocations(jsonData as Country[]),
+  });
 ```
 
-### Repo
-------------------
+### Repository
+
+---
 
 GitHub ★: https://github.com/doasyc/fry
