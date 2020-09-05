@@ -115,6 +115,68 @@ const fetchLocations = async () =>
   });
 ```
 
+### Types
+
+<details>
+<summary>
+  Config
+</summary>
+
+```ts
+export type Config<R = unknown> = {
+  url?: Url;
+  baseUrl?: BaseUrl;
+  params?: Params;
+  data?: Json;
+  fn?: Fn<R>;
+  silent?: boolean;
+  onBeforeRequest?: (config: Config<R>) => Config<R> | Promise<Config<R>>;
+  onRequestError?: (meta: {
+    config: Config<R>;
+    request: Request;
+    error: unknown;
+  }) => Response | Promise<Response>;
+  onBeforeResponse?: (meta: {
+    config: Config<R>;
+    response: Response;
+    request: Request;
+  }) => Response | Promise<Response>;
+  onResponseError?: (meta: {
+    config: Config<R>;
+    response: Response;
+    request: Request;
+    error: Error;
+  }) => Response | Promise<Response>;
+} & RequestInit;
+```
+</details>
+
+<details>
+<summary>
+  Other
+</summary>
+
+```ts
+export type Json = JsonPrimitive | JsonObject | JsonArray;
+export type JsonPrimitive = string | number | boolean | null;
+export type JsonObject = { [key: string]: Json };
+export type JsonArray = Json[];
+
+export type ObjectString = { [key: string]: string };
+
+export type Params = string[][] | ObjectString | string | URLSearchParams;
+export type Url = string;
+export type BaseUrl = string;
+
+export type Fn<R = unknown> = (meta: {
+  config: ConfigFn<R>;
+  request: Request;
+  response: Response;
+  jsonData?: unknown;
+}) => R;
+```
+</details>
+
 ### Repository
 
 ---
