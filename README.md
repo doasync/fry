@@ -27,8 +27,46 @@
 ```bash
 npm install fry
 ```
+Description
+-------------
 
-## Usage
+fry is `fetch` on steroids :)
+
+There are two exports in the package: `request` and `createRequest`
+
+`createRequest` is used to create a `request` with predefined config
+
+The `request` accepts the same params/options as `fetch` as well as additional ones: baseUrl, url, data, params, fn, silent
+
+```md
+url - the only required param,
+baseUrl - will be prepended to url,
+data - object for json body,
+params - query as an object,
+silent - do not fall on http errors,
+fn - preparation of the result (if necessary)
+```
+
+`fn` parameters:
+
+```md
+request - object of the request,
+response - object of the response,
+jsonData - parsed json,
+config - what was passed to the request
+```
+
+There are also basic inteceptors:
+
+```md
+onBeforeRequest - change config,
+onRequestError - return a new response (or rethrow an error),
+onBeforeResponse - do something before response is handled,
+onResponseError - return a new response or handle errors,
+```
+
+Usage
+-------------------
 
 ```typescript
 import { createRequest } from 'fry'; // import { request } from "fry";
