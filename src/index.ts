@@ -106,3 +106,4 @@ export const createRequest = <
 };
 
 export const request = createRequest();
+export const fry = createRequest();
