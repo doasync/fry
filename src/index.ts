@@ -15,8 +15,8 @@ export const createRequest = <
   baseConfig?: B
 ): {
   <R = unknown>(customConfig: ConfigFn<R>): Promise<R>;
-  (customConfig: ConfigNoFn<T> | Url): Promise<
-    B extends ConfigFn<infer X> ? X : unknown
+  <R = unknown>(customConfig: ConfigNoFn<T> | Url): Promise<
+    B extends ConfigFn<infer X> ? X : R
   >;
 } => async <R = unknown>(
   customConfig: ConfigFn<R> | ConfigNoFn<T> | Url
