@@ -30,7 +30,7 @@ export const createRequest = <
 
   if (config.onBeforeRequest) {
     try {
-      config = await config.onBeforeRequest(config);
+      config = await config.onBeforeRequest({ config });
     } catch (error) {
       initPromise = Promise.reject(error);
     }

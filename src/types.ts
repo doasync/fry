@@ -37,9 +37,9 @@ export interface ConfigNoFn<R = unknown> extends RequestInit {
   onResponseError?: OnResponseError<R>;
 }
 
-export type OnBeforeRequest<R = unknown> = (
-  config: Config<R>
-) => Config<R> | Promise<Config<R>>;
+export type OnBeforeRequest<R = unknown> = (meta: {
+  config: Config<R>;
+}) => Config<R> | Promise<Config<R>>;
 
 export type OnRequestError<R = unknown> = (meta: {
   config: Config<R>;
