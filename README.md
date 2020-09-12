@@ -17,8 +17,9 @@
 - Custom defaults
 - Easy interceptors
 - Transform function
-- TypeScrypt support
 - And more...
+
+> `fry` is written in TypeScript
 
 ---
 

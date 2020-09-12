@@ -1,4 +1,4 @@
-import { GetResourceConfig, Params } from './types';
+import { BaseUrl, Params, Url } from './types';
 
 export const getQueryString = (params: Params): string => {
   const qs = String(new URLSearchParams(params));
@@ -9,7 +9,11 @@ export const getResource = ({
   url,
   baseUrl,
   params,
-}: GetResourceConfig): string => {
+}: {
+  url?: Url;
+  baseUrl?: BaseUrl;
+  params?: Params;
+}): string => {
   const qs = params ? getQueryString(params) : '';
   if (baseUrl && url) {
     return `${baseUrl.replace(/\/$/, '')}/${url.replace(/^\//, '')}${qs}`;

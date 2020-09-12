@@ -10,17 +10,17 @@ const contentTypeJson = { 'Content-Type': 'application/json' };
 
 export const createRequest = <
   T = unknown,
-  B extends ConfigFn<T> | ConfigNoFn<T> = ConfigFn<T> | ConfigNoFn<T>
+  BaseConfig extends ConfigFn<T> | ConfigNoFn<T> = ConfigFn<T> | ConfigNoFn<T>
 >(
-  baseConfig?: B
+  baseConfig?: BaseConfig
 ): {
-  <R = unknown>(customConfig: ConfigFn<R>): Promise<R>;
-  <R = unknown>(customConfig: ConfigNoFn<T> | Url): Promise<
-    B extends ConfigFn<infer X> ? X : R
+  <R1 = unknown>(customConfig: ConfigFn<R1>): Promise<R1>;
+  <R2 = unknown>(customConfig: ConfigNoFn<T> | Url): Promise<
+    BaseConfig extends ConfigFn<infer X> ? X : R2
   >;
 } => async <R = unknown>(
   customConfig: ConfigFn<R> | ConfigNoFn<T> | Url
-): Promise<R | (B extends ConfigFn<infer X> ? X : unknown) | undefined> => {
+): Promise<R | (BaseConfig extends ConfigFn<infer X> ? X : R) | undefined> => {
   if (typeof customConfig === 'string') {
     customConfig = { url: customConfig };
   }
